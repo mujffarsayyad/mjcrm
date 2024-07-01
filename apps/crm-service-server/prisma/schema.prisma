@@ -1,0 +1,220 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Ticket {
+  assignedTo  String?
+  createdAt   DateTime            @default(now())
+  createdBy   String?
+  description String?
+  id          String              @id @default(cuid())
+  priority    EnumTicketPriority?
+  product     EnumTicketProduct?
+  status      EnumTicketStatus?
+  title       String?
+  updatedAt   DateTime            @updatedAt
+}
+
+model Sale {
+  amount    Float?
+  createdAt DateTime         @default(now())
+  customer  String?
+  date      DateTime?
+  id        String           @id @default(cuid())
+  product   EnumSaleProduct?
+  status    EnumSaleStatus?
+  updatedAt DateTime         @updatedAt
+}
+
+model Support {
+  assignedTo String?
+  createdAt  DateTime             @default(now())
+  customer   String?
+  id         String               @id @default(cuid())
+  issue      String?
+  priority   EnumSupportPriority?
+  resolution String?
+  status     EnumSupportStatus?
+  updatedAt  DateTime             @updatedAt
+}
+
+model Opportunity {
+  assignedTo      String?
+  closeDate       DateTime?
+  createdAt       DateTime              @default(now())
+  id              String                @id @default(cuid())
+  opportunityName String?
+  stage           EnumOpportunityStage?
+  updatedAt       DateTime              @updatedAt
+  value           Float?
+}
+
+model Documentation {
+  content   String?
+  createdAt DateTime  @default(now())
+  createdBy String?
+  date      DateTime?
+  id        String    @id @default(cuid())
+  title     String?
+  updatedAt DateTime  @updatedAt
+}
+
+model CustomerCare {
+  contactMethod EnumCustomerCareContactMethod?
+  createdAt     DateTime                       @default(now())
+  customerName  String?
+  date          DateTime?
+  id            String                         @id @default(cuid())
+  issue         String?
+  resolution    String?
+  resolvedBy    String?
+  updatedAt     DateTime                       @updatedAt
+}
+
+model PaymentGateway {
+  createdAt   DateTime @default(now())
+  createdBy   String?
+  credentials Json?
+  enabled     Boolean?
+  gatewayName String?
+  id          String   @id @default(cuid())
+  updatedAt   DateTime @updatedAt
+}
+
+model Analysis {
+  analysisReportData Json?
+  analysisReportName String?
+  createdAt          DateTime @default(now())
+  createdBy          String?
+  id                 String   @id @default(cuid())
+  reportData         Json?
+  reportName         String?
+  updatedAt          DateTime @updatedAt
+}
+
+model Pr {
+  campaignName String?
+  createdAt    DateTime  @default(now())
+  createdBy    String?
+  details      String?
+  endDate      DateTime?
+  id           String    @id @default(cuid())
+  startDate    DateTime?
+  updatedAt    DateTime  @updatedAt
+}
+
+model Goal {
+  assignedTo  String?
+  createdAt   DateTime  @default(now())
+  description String?
+  endDate     DateTime?
+  goalName    String?
+  id          String    @id @default(cuid())
+  startDate   DateTime?
+  updatedAt   DateTime  @updatedAt
+}
+
+model Subscription {
+  createdAt    DateTime                 @default(now())
+  customerName String?
+  endDate      DateTime?
+  id           String                   @id @default(cuid())
+  product      EnumSubscriptionProduct?
+  startDate    DateTime?
+  status       EnumSubscriptionStatus?
+  updatedAt    DateTime                 @updatedAt
+}
+
+model Lead {
+  contactInfo     String?
+  createdAt       DateTime            @default(now())
+  id              String              @id @default(cuid())
+  leadContactInfo String?
+  leadFullName    String?
+  leadName        String?
+  leadSource      EnumLeadLeadSource?
+  leadStatus      EnumLeadLeadStatus?
+  source          EnumLeadSource?
+  status          EnumLeadStatus?
+  updatedAt       DateTime            @updatedAt
+}
+
+model Communication {
+  content    String?
+  createdAt  DateTime                    @default(now())
+  date       DateTime?
+  id         String                      @id @default(cuid())
+  receivedBy String?
+  sentBy     String?
+  typeField  EnumCommunicationTypeField?
+  updatedAt  DateTime                    @updatedAt
+}
+
+enum EnumTicketPriority {
+  Option1
+}
+
+enum EnumTicketProduct {
+  Option1
+}
+
+enum EnumTicketStatus {
+  Option1
+}
+
+enum EnumSaleProduct {
+  Option1
+}
+
+enum EnumSaleStatus {
+  Option1
+}
+
+enum EnumSupportPriority {
+  Option1
+}
+
+enum EnumSupportStatus {
+  Option1
+}
+
+enum EnumOpportunityStage {
+  Option1
+}
+
+enum EnumCustomerCareContactMethod {
+  Option1
+}
+
+enum EnumSubscriptionProduct {
+  Option1
+}
+
+enum EnumSubscriptionStatus {
+  Option1
+}
+
+enum EnumLeadLeadSource {
+  Option1
+}
+
+enum EnumLeadLeadStatus {
+  Option1
+}
+
+enum EnumLeadSource {
+  Option1
+}
+
+enum EnumLeadStatus {
+  Option1
+}
+
+enum EnumCommunicationTypeField {
+  Option1
+}
